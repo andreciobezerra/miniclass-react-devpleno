@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Home from './home'
+import NewSeries from './newSeries'
+import EditSeries from './editSeries'
+import NavBar from './navBar'
+import Series from './Series'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const About = () => <section className="intro-section"><h1>Sobre</h1></section>
+
+class App extends Component {
+  
+  render() {
+    return (
+      <Router>
+        <div>
+          <NavBar/>
+          <Route path='/series-edit/:id' component={EditSeries} />
+          <Route exact path='/' component={Home} />
+          <Route exact path='/about' component={About} />
+          <Route exact path='/new' component={NewSeries} />
+          <Route path='/series/:genre' component={Series} />
+        </div>
+      </Router>
+    )
+  }
+
 }
 
-export default App;
+export default App
